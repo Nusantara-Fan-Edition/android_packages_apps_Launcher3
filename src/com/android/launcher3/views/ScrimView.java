@@ -49,6 +49,7 @@ import android.view.accessibility.AccessibilityManager.AccessibilityStateChangeL
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat;
@@ -132,8 +133,8 @@ public class ScrimView extends View implements Insettable, OnChangeListener,
         super(context, attrs);
         mLauncher = Launcher.getLauncher(context);
         mWallpaperColorInfo = WallpaperColorInfo.getInstance(context);
-        mEndScrim = Themes.getAttrColor(context, R.attr.allAppsScrimColor);
-
+        int endScrimAlpha = (int) Math.round(Utilities.getAllAppsScrimAlpha(context) * 2.55);
+        mEndScrim = ColorUtils.setAlphaComponent(Themes.getAttrColor(context, R.attr.allAppsScrimColor), endScrimAlpha);
         mMaxScrimAlpha = 0.7f;
 
         mDragHandleSize = context.getResources()

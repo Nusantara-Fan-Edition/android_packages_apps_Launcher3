@@ -14,8 +14,7 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-*/
--->
+*/ -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
@@ -27,6 +26,61 @@
         <item>@string/quick_event_rom_intro_title5</item>
         <item>@string/quick_event_rom_intro_title6</item>
         <item>@string/quick_event_rom_intro_title7</item>
+    </string-array>
+    
+<!-- Icon size -->
+    <string-array name="icon_size_names">
+        <item>-50</item>
+        <item>-45</item>
+        <item>-40</item>
+        <item>-35</item>
+        <item>-30</item>
+        <item>-25</item>
+        <item>-20</item>
+        <item>-15</item>
+        <item>-10</item>
+        <item>-5</item>
+        <item>@string/pref_value_default</item>
+        <item>+5</item>
+        <item>+10</item>
+        <item>+15</item>
+        <item>+20</item>
+    </string-array>
+
+    <string-array name="icon_size_values">
+        <item>050</item>
+        <item>055</item>
+        <item>060</item>
+        <item>065</item>
+        <item>070</item>
+        <item>075</item>
+        <item>080</item>
+        <item>085</item>
+        <item>090</item>
+        <item>095</item>
+        <item>100</item>
+        <item>105</item>
+        <item>110</item>
+        <item>115</item>
+        <item>120</item>
+    </string-array>
+
+    <string-array name="grid_names">
+        <item>@string/num_default</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string-array name="grid_values">
+        <item>-1</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
     </string-array>
 
 </resources>

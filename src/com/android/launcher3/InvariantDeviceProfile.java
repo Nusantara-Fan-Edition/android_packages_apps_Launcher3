@@ -301,9 +301,9 @@ public class InvariantDeviceProfile implements OnSharedPreferenceChangeListener 
     private void initGridOption(Context context, ArrayList<DisplayOption> options,
             DisplayOption displayOption, DisplayMetrics metrics) {
         GridOption closestProfile = options.get(0).grid;
-        numRows = closestProfile.numRows;
-        numColumns = closestProfile.numColumns;
-        numHotseatIcons = closestProfile.numHotseatIcons;
+        numRows = Utilities.getGridRows(context, closestProfile.numRows);
+        numColumns = Utilities.getGridColumns(context, closestProfile.numColumns);
+        numHotseatIcons = Utilities.getHotseatIcons(context, closestProfile.numHotseatIcons);
         defaultLayoutId = closestProfile.defaultLayoutId;
         demoModeLayoutId = closestProfile.demoModeLayoutId;
         numFolderRows = closestProfile.numFolderRows;
@@ -312,11 +312,12 @@ public class InvariantDeviceProfile implements OnSharedPreferenceChangeListener 
 
         mExtraAttrs = closestProfile.extraAttrs;
 
-        iconSize = displayOption.iconSize;
+        float iconSizeModifier = Utilities.getIconSizeModifier(context);
+        iconSize = displayOption.iconSize * iconSizeModifier;
         iconShapePath = getIconShapePath(context);
-        landscapeIconSize = displayOption.landscapeIconSize;
+        landscapeIconSize = displayOption.landscapeIconSize * iconSizeModifier;
         iconBitmapSize = ResourceUtils.pxFromDp(iconSize, metrics);
-        iconTextSize = displayOption.iconTextSize;
+        iconTextSize = displayOption.iconTextSize * iconSizeModifier;
         fillResIconDpi = getLauncherIconDensity(iconBitmapSize);
 
         // If the partner customization apk contains any grid overrides, apply them

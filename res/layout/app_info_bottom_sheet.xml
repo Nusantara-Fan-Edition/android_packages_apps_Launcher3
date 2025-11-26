@@ -8,7 +8,7 @@
     android:background="@drawable/top_round_rect_primary"
     android:elevation="@dimen/deep_shortcuts_elevation"
     android:layout_gravity="bottom"
-    android:theme="@style/AppItemActivityTheme">
+    android:theme="?attr/widgetsTheme">
 
     <TextView
         style="@style/TextHeadline"

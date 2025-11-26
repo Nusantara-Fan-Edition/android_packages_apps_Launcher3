@@ -67,6 +67,7 @@
     <string name="app_info_last_update">Last update</string>
     <string name="app_info_version">Version</string>
     <string name="app_info_more">More</string>
+
     <!-- Preference default value -->
     <string name="pref_value_default">Default</string>
 
@@ -76,7 +77,7 @@
     <string name="abbrev_wday_month_day_no_year">EEEEMMMd</string>
 
     <!-- QuickSpace: QuickEvent: Device Intro Event -->
-    <string name="quick_event_rom_intro_welcome">Welcome to crDroid!</string>
+    <string name="quick_event_rom_intro_welcome">Welcome to Nusantara Projects!</string>
     <string name="quick_event_rom_intro_title1">Have a great day</string>
     <string name="quick_event_rom_intro_title2">Thank you for choosing us</string>
     <string name="quick_event_rom_intro_title3">Loving us? Send us a beer</string>
@@ -146,12 +147,12 @@
         <item>Oh hey, what\'s up?</item>
         <item>Focus on your tasks</item>
         <item>How many screenshots do you take?</item>
-        <item>Open goodness with crDroid</item>
+        <item>Open goodness with Nusantara Projects</item>
         <item>Spread love not havoc</item>
         <item>Have fun!</item>
         <item>Time for some good music</item>
         <item>\u003C\u003C\u003C\u003C\u003C\u003C\u003C HEAD</item>
-        <item>You need crDroid Premium to see this</item>
+        <item>You need Nusantara Projects Premium to see this</item>
         <item>Remember the Lineage of the Unicorn</item>
         <item>Enjoy Xtended battery life</item>
         <item>Starting from the ground zero</item>
@@ -173,4 +174,28 @@
         <item>Winner Winner ....?</item>
         <item>rm -rf \/</item>
     </string-array>
+
+    <!-- Scrim alpha in apps drawer -->
+    <string name="all_apps_background_opacity_title">Background opacity</string>
+
+    <!-- Icon size -->
+    <string name="icon_size_title">Icon size</string>
+
+    <!-- Grid -->
+    <string name="num_default">Default</string>
+    <string name="grid_category_title">Columns and rows</string>
+    <string name="number_of_columns_title">Grid and app drawer columns</string>
+    <string name="number_of_rows_title">Grid and app drawer rows</string>
+    <string name="number_of_hotseat_title">Homescreen quicklaunch icons</string>
+    <string name="state_loading">Applying\u2026</string>
+
+    <!-- Lock desktop -->
+    <string name="lock_desktop_title">Lock desktop</string>
+
+    <!-- Custom seekbar -->
+    <string name="custom_seekbar_value">Value: <xliff:g id="v">%s</xliff:g></string>
+    <string name="custom_seekbar_default_value">by default</string>
+    <string name="custom_seekbar_default_value_to_set">Default value: <xliff:g id="v">%s</xliff:g>\nLong tap to set</string>
+    <string name="custom_seekbar_default_value_is_set">Default value is set</string>
+
 </resources>

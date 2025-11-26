@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
 
+import com.android.launcher3.LauncherAppState;
 import com.android.launcher3.LauncherFiles;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
@@ -37,11 +38,14 @@ import com.android.launcher3.util.SecureSettingsObserver;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
+import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceFragment.OnPreferenceStartFragmentCallback;
 import androidx.preference.PreferenceFragment.OnPreferenceStartScreenCallback;
 import androidx.preference.PreferenceGroup.PreferencePositionCallback;
 import androidx.preference.PreferenceScreen;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.launcher3.settings.preferences.CustomSeekBarPreference;
 
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
@@ -66,6 +70,15 @@ public class SettingsAppDrawer extends Activity
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        switch (key) {
+            case Utilities.GRID_COLUMNS:
+            case Utilities.GRID_ROWS:
+            case Utilities.HOTSEAT_ICONS:
+                LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                break;
+            default:
+                break;
+        }
     }
 
     private boolean startFragment(String fragment, Bundle args, String key) {
@@ -143,8 +156,18 @@ public class SettingsAppDrawer extends Activity
          * will remove that preference from the list.
          */
         protected boolean initPreference(Preference preference) {
-            //switch (preference.getKey()) {
-            //}
+            switch (preference.getKey()) {
+                case Utilities.KEY_ALL_APPS_BACKGROUND_ALPHA:
+                    CustomSeekBarPreference allAppsAlpha = 
+                            (CustomSeekBarPreference) findPreference(Utilities.KEY_ALL_APPS_BACKGROUND_ALPHA);
+                    allAppsAlpha.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                        public boolean onPreferenceChange(Preference preference, Object newValue) {
+                            LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                            return true;
+                        }
+                    });
+                    return true;
+            }
             return true;
         }
 

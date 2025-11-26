@@ -120,6 +120,8 @@ public final class Utilities {
 
     private static final long WAIT_BEFORE_RESTART = 250;
 
+    public static final String KEY_ALL_APPS_BACKGROUND_ALPHA = "pref_all_apps_scrim_alpha";
+
     /**
      * Set on a motion event dispatched from the nav bar. See {@link MotionEvent#setEdgeFlags(int)}.
      */
@@ -132,6 +134,11 @@ public final class Utilities {
     public static final String KEY_SHOW_ALT_QUICKSPACE = "pref_show_alt_quickspace";
     public static final String KEY_SHOW_QUICKSPACE_NOWPLAYING = "pref_quickspace_np";
     public static final String KEY_SHOW_QUICKSPACE_PSONALITY = "pref_quickspace_psonality";
+    public static final String ICON_SIZE = "pref_icon_size";
+    public static final String GRID_COLUMNS = "pref_grid_columns";
+    public static final String GRID_ROWS = "pref_grid_rows";
+    public static final String HOTSEAT_ICONS = "pref_hotseat_icons";
+    public static final String LOCK_DESKTOP_KEY = "pref_lock_desktop";
 
     /**
      * Indicates if the device has a debug build. Should only be used to store additional info or
@@ -302,6 +309,11 @@ public final class Utilities {
             scaleRect(r, scale);
             r.offset(cx, cy);
         }
+    }
+
+    public static int getAllAppsScrimAlpha(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getInt(KEY_ALL_APPS_BACKGROUND_ALPHA, 100);
     }
 
     public static void scaleRect(Rect r, float scale) {
@@ -730,14 +742,13 @@ public final class Utilities {
         return getPrefs(context).getBoolean(SHOW_HOTSEAT_GRADIENT, true);
     }
 
-
     public static boolean showQuickspace(Context context) {
         SharedPreferences prefs = getPrefs(context.getApplicationContext());
         return prefs.getBoolean(DESKTOP_SHOW_QUICKSPACE, true);
     }
 
     public static boolean useAlternativeQuickspaceUI(Context context) {
-        return getPrefs(context).getBoolean(KEY_SHOW_ALT_QUICKSPACE, false);
+        return getPrefs(context).getBoolean(KEY_SHOW_ALT_QUICKSPACE, true);
     }
 
     public static boolean isQuickspaceNowPlaying(Context context) {
@@ -748,6 +759,10 @@ public final class Utilities {
         return getPrefs(context).getBoolean(KEY_SHOW_QUICKSPACE_PSONALITY, true);
     }
 
+    public static boolean isDesktopLocked(Context context) {
+        return getPrefs(context).getBoolean(LOCK_DESKTOP_KEY, false);
+    }
+
     public static void restart(final Context context) {
         MODEL_EXECUTOR.execute(() -> {
             try {
@@ -756,6 +771,87 @@ public final class Utilities {
             }
             android.os.Process.killProcess(android.os.Process.myPid());
         });
+    }
+
+    public static float getIconSizeModifier(Context context) {
+        String saved = getPrefs(context).getString(ICON_SIZE, "100");
+        float offset;
+        switch (saved) {
+            case "050":
+                offset = 0.50F;
+                break;
+            case "055":
+                offset = 0.55F;
+                break;
+            case "060":
+                offset = 0.60F;
+                break;
+            case "065":
+                offset = 0.65F;
+                break;
+            case "070":
+                offset = 0.70F;
+                break;
+            case "075":
+                offset = 0.75F;
+                break;
+            case "080":
+                offset = 0.80F;
+                break;
+            case "085":
+                offset = 0.85F;
+                break;
+            case "090":
+                offset = 0.90F;
+                break;
+            case "095":
+                offset = 0.95F;
+                break;
+            case "100":
+                offset = 1.00F;
+                break;
+            case "105":
+                offset = 1.05F;
+                break;
+            case "110":
+                offset = 1.10F;
+                break;
+            case "115":
+                offset = 1.15F;
+                break;
+            case "120":
+                offset = 1.20F;
+                break;
+            default:
+                offset = 1.00F;
+                break;
+        }
+        return offset;
+    }
+
+    public static int getGridColumns(Context context, int fallback) {
+        return getIconCount(context, GRID_COLUMNS, fallback);
+    }
+
+    public static int getGridRows(Context context, int fallback) {
+        return getIconCount(context, GRID_ROWS, fallback);
+    }
+
+    public static int getHotseatIcons(Context context, int fallback) {
+        return getIconCount(context, HOTSEAT_ICONS, fallback);
+    }
+
+    private static int getIconCount(Context context, String preferenceName, int preferenceFallback) {
+        String saved = getPrefs(context).getString(preferenceName, "-1");
+        try {
+            int num = Integer.valueOf(saved);
+            if (num == -1) {
+                return preferenceFallback;
+            }
+            return num;
+        } catch (Exception e) {
+            return preferenceFallback;
+        }
     }
 
 }

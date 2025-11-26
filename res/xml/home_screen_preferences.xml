@@ -13,7 +13,7 @@
         android:dependency="pref_show_quickspace"
         android:title="@string/quickspace_alternate_style_title"
         android:summary="@string/quickspace_alternate_style_summary"
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:persistent="true"/>
 
     <SwitchPreference
@@ -64,4 +64,11 @@
         android:title="@string/show_labels_landscape"
         android:defaultValue="false"
         android:persistent="true" />
+
+    <SwitchPreference
+        android:key="pref_lock_desktop"
+        android:title="@string/lock_desktop_title"
+        android:defaultValue="false"
+        android:persistent="true" />
+
 </androidx.preference.PreferenceScreen> 
